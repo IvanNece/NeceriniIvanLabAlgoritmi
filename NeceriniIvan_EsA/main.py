@@ -20,9 +20,9 @@ from sortedLinkedList import SortedLinkedListQueue
 # Default value is 1000
 sys.setrecursionlimit(10000)
 
-n = 800
+n = 600
 nrTestEachIteration = 30
-step = 50
+step = 30
 
 
 # DEFINING THE FUNCTIONS

@@ -152,6 +152,8 @@ Segue una lista delle librerie principali utilizzati nella scrittura del codice 
 
 \end{itemize}
 
+\label{sec:usoLibrerie}
+
 \clearpage
 
 \section{Cenni teorici}
@@ -363,32 +365,49 @@ Come accennato in precedenza, questa relazione confronta le prestazioni di tre o
 
 \subsubsection{Tabella riassuntiva}
 
-\begin{tabular}{cccc}
-  \toprule
-  Colonna 1 & Colonna 2 & Colonna 3 & Colonna 4 \\
-  \midrule
-  Contenuto 1 & Contenuto 2 & Contenuto 3 & Contenuto 4 \\
-  \hdashline
-  Contenuto 5 & Contenuto 6 & Contenuto 7 & Contenuto 8 \\
-  \hdashline
-  Contenuto 9 & Contenuto 10 & Contenuto 11 & Contenuto 12 \\
-  \bottomrule
-\end{tabular}
-
+\begin{table}[ht]
+  \centering
+  \begin{tabular}{cccc}
+    \toprule
+    Struttura dati & Inserimento & Ricerca del massimo & Estrazione del massimo \\
+    \midrule
+    Max heap & $O(\log_2(n))$ & $\Theta(1)$ & $O(\log_2(n))$   \\
+    \hdashline
+    Lista concatenata & $\Theta(1)$ & $\Theta(n)$ & $\Theta(n)$   \\
+    \hdashline
+    Lista concatenata ordinata & $O(n)$ & $\Theta(1)$ & $\Theta(1)$  \\
+    \bottomrule
+  \end{tabular}
+    \caption{Prestazioni attese delle varie operazioni}
+    \label{tab:Prestazioni}
+\end{table}
 
 \clearpage
 
 \section{Descrizione degli esperimenti condotti}
-% commento
+Per ogni implementazione della coda con priorità, si sono condotti test su ogni funzione (inserimento dei valori, ricerca ed estrazione del massimo) utilizzando un incremento graduale di valori (\textit{n}), da 1 fino a 600, con uno step di 30 unità ad ogni iterazione. 
 
-\clearpage
+In totale sono stati effettuati dunque 20 test (corrispondono alla prima colonna delle tabelle in sezione \ref{sec:tabelleTempi}).
 
-\section{Grafici dei tempi di esecuzione}
-% commento
+Al fine di ottenere risultati più affidabili, ciascun test è stato eseguito 100 volte e i tempi di esecuzione sono stati mediati. In tal modo si è ridotta l'influenza di altri processi in esecuzione sulla macchina durante i test.
+
+Per misurare i tempi di esecuzione, è stato utilizzato il metodo \textit{timeit(stmt, number)} del modulo Python \textit{timeit}. Il primo parametro (\emph{stmt}) corrisponde alla funzione da eseguire, mentre il secondo parametro (\emph{number}) indica il numero di iterazioni da fare. Questo metodo restituisce il tempo totale impiegato per l'esecuzione dei test.
+
+\subsection{Operazioni effettuate su una copia della coda con priorità}
+\textbf{Nota bene:}  I test vengono eseguiti su una copia della coda fornita come parametro. Ciò è necessario poiché tali test coinvolgono ripetute operazioni che modificano la struttura della lista. Senza l'uso di una copia, ogni operazione influenzerebbe la lista rispetto all'iterazione precedente, portando a risultati di test errati.
+
+Per questo motivo viene utilizzata la libreria \verb|copy| e la sua funzione \textit{copy.deepcopy()}, come descritto in sezione \ref{sec:usoLibrerie}.
+
 
 \clearpage
 
 \section{Tabelle dei tempi di esecuzione}
+
+\label{sec:tabelleTempi}
+
+\clearpage
+
+\section{Grafici dei tempi di esecuzione}
 % commento
 
 \clearpage
