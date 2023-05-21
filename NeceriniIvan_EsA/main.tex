@@ -389,15 +389,12 @@ Per ogni implementazione della coda con priorità, si sono condotti test su ogni
 
 In totale sono stati effettuati dunque 20 test (corrispondono alla prima colonna delle tabelle in sezione \ref{sec:tabelleTempi}).
 
-Al fine di ottenere risultati più affidabili, ciascun test è stato eseguito 100 volte e i tempi di esecuzione sono stati mediati. In tal modo si è ridotta l'influenza di altri processi in esecuzione sulla macchina durante i test.
-
-Per misurare i tempi di esecuzione, è stato utilizzato il metodo \textit{timeit(stmt, number)} del modulo Python \textit{timeit}. Il primo parametro (\emph{stmt}) corrisponde alla funzione da eseguire, mentre il secondo parametro (\emph{number}) indica il numero di iterazioni da fare. Questo metodo restituisce il tempo totale impiegato per l'esecuzione dei test.
+Al fine di ottenere risultati più affidabili, ciascun test è stato eseguito 100 volte e i tempi di esecuzione sono stati mediati. In tal modo si è ridotta l'influenza di altri processi in esecuzione sulla macchina durante i test. Per misurare i tempi di esecuzione, è stato utilizzato il metodo \textit{timeit(stmt, number)} del modulo Python \textit{timeit}. Il primo parametro (\emph{stmt}) corrisponde alla funzione da eseguire, mentre il secondo parametro (\emph{number}) indica il numero di iterazioni da fare. Questo metodo restituisce il tempo totale impiegato per l'esecuzione dei test.
 
 \subsection{Operazioni effettuate su una copia della coda con priorità}
 \textbf{Nota bene:}  I test vengono eseguiti su una copia della coda fornita come parametro. Ciò è necessario poiché tali test coinvolgono ripetute operazioni che modificano la struttura della lista. Senza l'uso di una copia, ogni operazione influenzerebbe la lista rispetto all'iterazione precedente, portando a risultati di test errati.
 
 Per questo motivo viene utilizzata la libreria \verb|copy| e la sua funzione \textit{copy.deepcopy()}, come descritto in sezione \ref{sec:usoLibrerie}.
-
 
 \clearpage
 
@@ -405,22 +402,116 @@ Per questo motivo viene utilizzata la libreria \verb|copy| e la sua funzione \te
 
 \label{sec:tabelleTempi}
 
+Di seguito sono presentate le tabelle che mostrano i tempi di esecuzione delle tre operazioni (inserimento, ricerca ed estrazione del massimo) eseguite sulla coda con priorità.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Images/TempoInserimento.png}
+    \caption{Tempi d'esecuzione dell'inserimento di "n" valori nella coda [mS]}
+    \label{fig:TabellaInserimento}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Images/TempoRicercaMassimo.png}
+    \caption{Tempi d'esecuzione della ricerca del valore massimo da una coda di "n" elementi [mS]}
+    \label{fig:TabellaRicerca}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Images/TempoEstMassimo.png}
+    \caption{Tempi d'esecuzione dell'estrazione del valore massimo da una coda di "n" elementi [mS]}
+    \label{fig:TabellaEstrazione}
+\end{figure}
+
 \clearpage
 
 \section{Grafici dei tempi di esecuzione}
-% commento
+
+\label{sec:grafici}
+
+Di seguito sono presentati i grafici che consentono di confrontare le prestazioni misurate delle diverse implementazioni della coda con priorità.
+I grafici illustrano la variazione del tempo di esecuzione delle tre funzioni implementate della coda con priorità (tutto ciò al variare del numero di elementi presenti nella coda).
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{Images/GraficoInserimento.png}
+    \centering
+    \caption{Tempi di esecuzione dell'inserimento di n valori nella coda}
+    \label{fig:GraficoInserimento}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{Images/GraficoRicercaMassimo.png}
+    \centering
+    \caption{Tempi d'esecuzione della ricerca del valore massimo al variare del numero di elementi presenti nella coda}
+    \label{fig:GraficoRicerca}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{Images/GraficoEstMassimo.png}
+    \centering
+    \caption{Tempi d'esecuzione dell'estrazione del valore massimo al variare del numero di elementi presenti nella coda}
+    \label{fig:GraficoEstrazione}
+\end{figure}
 
 \clearpage
 
 \section{Analisi e osservazioni sui risultati finali}
 
+In questa sezione finale viene presentata un'analisi dettagliata delle prestazioni delle tre operazioni per le tre diverse implementazioni della coda con priorità, utilizzando le tabelle e i grafici prodotti precedentemente come supporto visivo. Il presente capitolo si propone di analizzare in modo più approfondito i risultati ottenuti e di trarre osservazioni significative da essi. L'obiettivo finale di questa sezione è quello di offrire una sintesi completa delle osservazioni tratte dai risultati finali dell'analisi, mettendo in luce le caratteristiche e le differenze significative tra le tre implementazioni della coda con priorità (vedere tabella riassuntiva \ref{tab:Prestazioni}).
+
 \subsection{Inserimento dei valori}
+
+La tabella rappresentata nella figura \ref{fig:TabellaInserimento} riporta i tempi di esecuzione dell'operazione di inserimento nelle diverse implementazioni della coda con priorità. Sulla base di questi valori, è stato generato il grafico illustrato nella figura \ref{fig:GraficoInserimento}, che offre una rappresentazione visiva della complessità dell'operazione di inserimento:
+
+\begin{itemize}
+\item Fare riferimento alla tabella \ref{fig:TabellaInserimento} e al conseguente grafico \ref{fig:GraficoInserimento}.
+
+\item L'inserimento in un max heap ha un costo con una complessità pari a $O(\log_2(n))$. Pertanto, in termini di prestazioni, si posiziona a metà strada rispetto alle altre due implementazioni (\ref{fig:GraficoInserimento}).
+
+\item L'inserimento in una lista concatenata non ordinata ha un costo costante ($\Theta(1)$), il che significa che i tempi di esecuzione sono notevolmente inferiori rispetto alle altre due implementazioni. Questo perché l'inserimento viene effettuato in testa alla coda, senza richiedere operazioni di ricerca o riorganizzazione dei dati.
+
+\item L'inserimento in una lista concatenata ordinata è un'operazione molto costosa. Dall'andamento rappresentato nel grafico (linea gialla), è evidente che i tempi di esecuzione aumentano linearmente all'aumentare del numero di valori nella lista. Ciò è dovuto al fatto che i valori sono ordinati, e nel caso peggiore (valore da inserire maggiore di tutti gli altri), è necessario scorrere l'intera lista per trovare la posizione corretta di inserimento. Il costo di questa operazione cresce in modo più significativo rispetto all'implementazione basata sul max heap (complessità $O(n)$, $O$ e non $\Theta$ in quanto non è detto che scorra tutta la lista).
+
+\end{itemize}
 
 \subsection{Ricerca del valore massimo}
 
+\begin{itemize}
+\item Fare riferimento alla tabella \ref{fig:TabellaRicerca} e al conseguente grafico \ref{fig:GraficoRicerca}.
+
+\item La ricerca del valore massimo in una coda con priorità implementata tramite un max heap ha un costo costante (complessità $\Theta(1)$) grazie alla sua struttura. Questo è evidente dal grafico \ref{fig:GraficoRicerca}, in quanto la linea rossa e la linea gialla (corrispondenti alla lista concatenata ordinata) si sovrappongono approssimativamente e rimangono costanti all'aumentare delle dimensioni della coda.
+
+\item La ricerca del valore massimo in una lista concatenata non ordinata è un'operazione molto costosa. Questo è dovuto al fatto che, essendo la lista non ordinata, è necessario scorrere tutti gli elementi al suo interno (complessità $\Theta(n)$). Come previsto dalla teoria, il tempo di esecuzione dell'algoritmo aumenta linearmente con la dimensione (n) della lista.
+
+\item Per la lista concatenata ordinata vale lo stesso principio del max heap. Grazie alla sua struttura, è sufficiente accedere a uno dei due estremi della coda (direttamente tramite l'head o la tail, a seconda dell'ordine della lista) per trovare il valore massimo (complessità $\Theta(1)$).
+
+\end{itemize}
+
 \subsection{Estrazione del valore massimo}
 
+\begin{itemize}
+\item Fare riferimento alla tabella \ref{fig:TabellaEstrazione} e al conseguente grafico \ref{fig:GraficoEstrazione}.
+
+\item L'estrazione del valore massimo in un max heap ha un costo con complessità $O(\log_2(n))$. Questo è dovuto al fatto che una volta che viene rimosso l'elemento massimo (che corrisponde alla radice), è necessario eseguire una serie di operazioni per ripristinare e mantenere le proprietà del max heap. Tali operazioni hanno un costo logaritmico.
+
+\item Allo stesso modo della ricerca del valore massimo, nell'estrazione del massimo da una lista concatenata, il costo aumenta linearmente all'aumentare della dimensione della lista.
+
+\item L'estrazione del massimo in una lista concatenata ordinata ha un costo costante, che rimane invariato rispetto alla ricerca del massimo nella stessa struttura dati.
+
+\end{itemize}
+
 \subsection{Conclusioni}
+
+
+L'analisi teorica della complessità degli algoritmi è stata validata attraverso test e misurazioni sperimentali, confermando le previsioni. I risultati ottenuti evidenziano le diverse prestazioni delle implementazioni considerate per le operazioni di inserimento di un valore generico, ricerca ed estrazione del valore massimo.
+
+La lista concatenata non ordinata si distingue per la velocità nell'inserimento, ma presenta limitazioni nella ricerca ed estrazione del valore massimo, che richiedono un tempo proporzionale alla dimensione della lista. D'altra parte, la lista concatenata ordinata offre una ricerca del valore massimo rapida, ma a scapito di un inserimento più lento.
+
+Il max heap rappresenta un compromesso tra le due strutture dati precedenti. Entrambi l'inserimento e l'estrazione del massimo hanno una complessità logaritmica, garantendo buone prestazioni in situazioni con un grande numero di elementi. Inoltre, la ricerca del valore massimo avviene in tempo costante, contribuendo alla sua efficienza complessiva.
+
+In conclusione, la scelta della struttura dati dipende dalle specifiche esigenze dell'applicazione. La lista concatenata può essere preferita in scenari in cui l'inserimento è prioritario, ma si può accettare un'efficienza leggermente inferiore nella ricerca ed estrazione del massimo. Al contrario, se la ricerca del massimo è frequente e si richiede un buon compromesso tra operazioni di inserimento ed estrazione, il max heap si rivela una scelta più appropriata.
 
 \end{document}
 
