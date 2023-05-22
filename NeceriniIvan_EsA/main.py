@@ -214,7 +214,7 @@ if __name__ == "__main__":
                 linkedListMaximumDuration,
                 sortedLinkedListMaximumDuration,
             ],
-            ["Max heap", "Linked List", "Sorted Linked List"],
+            ["Max Heap", "Lista concatenata", "Lista concatenta ordinata"],
             "Ricerca del massimo",
         ],
     )
@@ -227,7 +227,7 @@ if __name__ == "__main__":
                 linkedListExtractMaxDuration,
                 sortedLinkedListExtractMaxDuration,
             ],
-            ["Max heap", "Linked List", "Sorted Linked List"],
+            ["Max Heap", "Lista concatenata", "Lista concatenta ordinata"],
             "Estrazione del massimo",
         ],
     )

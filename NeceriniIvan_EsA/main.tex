@@ -401,11 +401,11 @@ Per questo motivo viene utilizzata la libreria \verb|copy| e la sua funzione \te
 
 \label{sec:tabelleTempi}
 
-Di seguito sono presentate le tabelle che mostrano i tempi di esecuzione delle tre operazioni (inserimento, ricerca ed estrazione del massimo) eseguite sulla coda con priorità.
+Di seguito sono presentate le tabelle che mostrano i tempi di esecuzione delle tre operazioni (inserimento, ricerca ed estrazione del massimo) eseguite sulla coda con priorità. Grazie a queste tabelle verranno poi prodotti i grafici in sezione \ref{sec:grafici}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Images/TempoInserimento.png}
+    \includegraphics[scale=0.8]{Images/TempoInserimento.png}
     \caption{Tempi d'esecuzione dell'inserimento di "n" valori nella coda [mS]}
     \label{fig:TabellaInserimento}
 \end{figure}
@@ -460,7 +460,7 @@ I grafici illustrano la variazione del tempo di esecuzione delle tre funzioni im
 
 \label{sec:osservazioniFinali}
 
-In questa sezione finale viene presentata un'analisi dettagliata delle prestazioni delle tre operazioni per le tre diverse implementazioni della coda con priorità, utilizzando le tabelle e i grafici prodotti precedentemente come supporto visivo. Il presente capitolo si propone di analizzare in modo più approfondito i risultati ottenuti e di trarre osservazioni significative da essi. L'obiettivo finale di questa sezione è quello di offrire una sintesi completa delle osservazioni tratte dai risultati finali dell'analisi, mettendo in luce le caratteristiche e le differenze significative tra le tre implementazioni della coda con priorità (vedere tabella riassuntiva \ref{tab:Prestazioni}).
+In questa sezione finale viene presentata un'analisi dettagliata delle prestazioni delle tre operazioni per le tre diverse implementazioni della coda con priorità, utilizzando le tabelle e i grafici prodotti precedentemente come supporto visivo. Il presente capitolo si propone di analizzare in modo più approfondito i risultati ottenuti e di trarre osservazioni significative da essi. L'obiettivo finale di questa sezione è quello di offrire una sintesi completa delle osservazioni tratte dai risultati finali dell'analisi (vedi sezione \ref{sec:conclusioni}), mettendo in luce le caratteristiche e le differenze significative tra le tre implementazioni della coda con priorità (vedere tabella riassuntiva \ref{tab:Prestazioni}).
 
 \subsection{Inserimento dei valori}
 
@@ -505,6 +505,7 @@ La tabella rappresentata nella figura \ref{fig:TabellaInserimento} riporta i tem
 
 \subsection{Conclusioni}
 
+\label{sec:conclusioni}
 
 L'analisi teorica della complessità degli algoritmi è stata validata attraverso test e misurazioni sperimentali, confermando le previsioni. I risultati ottenuti evidenziano le diverse prestazioni delle implementazioni considerate per le operazioni di inserimento di un valore generico, ricerca ed estrazione del valore massimo.
 
