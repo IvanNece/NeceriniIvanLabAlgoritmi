@@ -157,9 +157,9 @@ Segue una lista delle librerie principali utilizzati nella scrittura del codice 
 \clearpage
 
 \section{Cenni teorici}
-Una \textbf{coda con priorità} è una struttura dati utilizzata per gestire un insieme dinamico di elementi denominato "S". Ogni elemento in questa coda è associato a un valore chiamato "chiave", che determina la sua priorità. Nei nostri esperimenti, valori più alti di chiave indicano una priorità più elevata.
+Una \textbf{coda con priorità} è una struttura dati utilizzata per gestire un insieme dinamico di elementi denominato "S". Ogni elemento in questa coda è associato a un valore chiamato "chiave", che determina la sua priorità. In questi esperimenti, valori più alti di chiave indicano una priorità più elevata.
 
-Le operazioni fondamentali per il corretto funzionamento e utilizzo della coda con priorità includono l'inserimento di elementi, la ricerca del valore massimo e la sua eventuale estrazione. In questa relazione, analizzeremo e confrontaremo queste operazioni nelle diverse implementazioni della coda con priorità.
+Le operazioni fondamentali per il corretto funzionamento e utilizzo della coda con priorità includono l'inserimento di elementi, la ricerca del valore massimo e la sua eventuale estrazione. In questa relazione, analizzeremo e confronteremo queste operazioni nelle diverse implementazioni della coda con priorità.
 
 \subsection{Schema delle classi, organizzazione del codice e delle strutture dati}
 Il diagramma delle classi è rappresentato in figura \ref{fig: DiagrammaDelleClassi}, al fine di spiegare al meglio l'organizzazione del codice Python. 
@@ -174,7 +174,7 @@ Il diagramma delle classi è rappresentato in figura \ref{fig: DiagrammaDelleCla
 La relazione ha lo scopo di condurre test su tre operazioni di una coda con priorità, implementata utilizzando diverse strutture dati. Per raggiungere questo obiettivo, è stata creata una classe astratta chiamata "Queue". La classe "Queue" contiene i prototipi dei metodi fondamentali per il corretto funzionamento di una coda con priorità. Ciò impone alle classi derivate (che sono concrete) di implementare effettivamente tali metodi, al fine di rendere la coda con priorità utilizzabile con le diverse strutture dati implementate.
 
 \subsubsection{Max heap}
-Un heap binario (classe \textit{MaxHeap} in figura \ref{fig: DiagrammaDelleClassi} è una struttura dati composta da un array che può essere considerato come un albero binario quasi completo (per questo mtoivo la sua altezza è di $\Theta(\log_2(n))$) come mostrato nella figura \ref{fig: Heap1}, dove il numero all'interno del cerchio è il valore registrato dentro quel nodo e il numero sopra è l'indice del corrsipondente array. Ogni nodo dell'albero corrisponde a un elemento dell'array che memorizza il valore del nodo. Tutti i livelli dell'albero sono completamente riempiti, tranne l'ultimo che potrebbe non essere completamente riempito dalla sinistra. Un array H che rappresenta un heap è un oggetto con due attributi: lunghezza[H] che indica il numero di elementi nell'array e size[H] che indica il numero di elementi dell'heap registrati nell'array H. In altre parole, anche se H[1...lunghezza[H]] contiene numeri validi, nessun elemento dopo H[size[H]], dove size[H] \(\leq\) lunghezza[H], è un elemento dell'heap.
+Un heap binario (classe \textit{MaxHeap} in figura \ref{fig: DiagrammaDelleClassi} è una struttura dati composta da un array che può essere considerato come un albero binario quasi completo (per questo motivo la sua altezza è di $\Theta(\log_2(n))$) come mostrato nella figura \ref{fig: Heap1}, dove il numero all'interno del cerchio è il valore registrato dentro quel nodo e il numero sopra è l'indice del corrispondente array. Ogni nodo dell'albero corrisponde a un elemento dell'array che memorizza il valore del nodo. Tutti i livelli dell'albero sono completamente riempiti, tranne l'ultimo che potrebbe non essere completamente riempito dalla sinistra. Un array H che rappresenta un heap è un oggetto con due attributi: lunghezza[H] che indica il numero di elementi nell'array e size[H] che indica il numero di elementi dell'heap registrati nell'array H. In altre parole, anche se H[1...lunghezza[H]] contiene numeri validi, nessun elemento dopo H[size[H]], dove size[H] \(\leq\) lunghezza[H], è un elemento dell'heap.
 
 \begin{figure}[H]
     \includegraphics[width=0.6\textwidth]{Images/Heap1.png}
@@ -209,7 +209,6 @@ Grazie alla rappresentazione di un heap visto come un array, è possibile risali
     \item Figlio destro del nodo $i$-esimo: posizione $2\times i + 2$
 \end{itemize}
 
-
 Nel codice, oltre ai tre metodi statici (parent(i), leftChild(i) e rightChild(i)) usati per ritornare le posizioni di nodi particolari visti poco sopra, sono stati scritti altri metodi utili per il funzionamento delle operazioni da testare sulla coda con priorità:
 
 \begin{itemize}
@@ -217,7 +216,7 @@ Nel codice, oltre ai tre metodi statici (parent(i), leftChild(i) e rightChild(i)
 
     \item \verb|buildMaxHeap(array)|: riceve come argomento un array e inizializza l'heap con tale array, impostando la dimensione dell'heap uguale alla lunghezza dell'array. Successivamente, attraverso un ciclo che parte dalla metà dell'heap e arriva a 0, viene chiamata la funzione maxHeapify su ciascun nodo dell'heap. La chiamata a maxHeapify viene effettuata solo sui nodi che non sono foglie dell'heap, in quanto i nodi foglia sono considerati come max-heap (poiché non hanno figli). Quindi, la funzione buildMaxHeap crea un max-heap a partire dall'array fornito, garantendo che tutti i nodi soddisfino la proprietà del max-heap.
     
-    \item \verb|heapIncreaseKey(i, key)|: La funzione heapIncreaseKey è utilizzata per aumentare il valore di un nodo specifico nell'heap, mantenendo la proprietà del max-heap. Questa funzione viene comunemente chiamata quando si desidera aumentare la priorità di un elemento nell'heap. Questo metodo è \emph{fondamentale in quanto viene chiamato nell'inserimento di un valore in una coda di priorità implementata con Max heap}
+    \item \verb|heapIncreaseKey(i, key)|: La funzione heapIncreaseKey è utilizzata per aumentare il valore di un nodo specifico nell'heap, mantenendo la proprietà del maxHeap. Questa funzione viene comunemente chiamata quando si desidera aumentare la priorità di un elemento nell'heap. Questo metodo è \emph{fondamentale in quanto viene chiamato nell'inserimento di un valore in una coda di priorità implementata con Max heap}
 \end{itemize}
 
 \clearpage
@@ -231,7 +230,7 @@ Il metodo toTree crea un oggetto albero utilizzando la classe Node fornita dalla
 
 Infine, il metodo restituisce il nodo radice dell'albero creato.
 
-L'utilizzo della libreria anytree e del metodo toTree consente di visualizzare graficamente la struttura ad albero dell'heap. Nell'esempio di codice fornito, dopo aver eseguito alcune operazioni sull'heap (come l'inserimento e l'estrazione del valore massimo), viene chiamato il metodo toTree per ottenere la rappresentazione ad albero dell'heap corrente. Questo albero viene quindi visualizzato utilizzando il modulo RenderTree della libreria anytree.
+L'utilizzo della libreria anytree e del metodo toTree consente di visualizzare graficamente la struttura ad albero dell'heap. Nell'esempio di codice fornito, dopo aver eseguito alcune operazioni sull'heap (come l'inserimento e l'estrazione del valore massimo), viene chiamato il metodo toTree per ottenere la rappresentazione ad albero dell'heap corrente. Questo albero viene quindi visualizzato utilizzando il modulo \textbf{RenderTree} della libreria anytree.
 
 L'utilizzo di anytree e del metodo toTree consente di visualizzare l'heap in una forma più comprensibile, facilitando l'ispezione e il debugging della struttura dell'heap. Inoltre, la rappresentazione ad albero può essere utile per visualizzare la gerarchia dei valori presenti nell'heap.
 
@@ -247,7 +246,7 @@ Una lista concatenata è una struttura dati utilizzata per rappresentare una seq
 
 \footnote{Fonte dell'immagine: \textit{https://www.science.unitn.it/~brunato/labpro1/lista.html}}
 
-Nel codice, dove viene implementata una coda con priorità tramite lista concatenata, il dato è un valore che scandisce la priorità del nodo. La lista concatenata (classe \textit{LinkedListQueue} in figura \ref{fig: DiagrammaDelleClassi}) è stata realizzata implementando tutti i metodi che non erano stati scritti nella classe astratta \textit{Queue} e ogni nodo è rappresentato dalla classe \textit{LinkedListNode} in figura \ref{fig: DiagrammaDelleClassi}.
+Nel codice, dove viene implementata una coda con priorità tramite lista concatenata, il dato è un valore che scandisce la priorità del nodo. La lista concatenata (classe \textit{LinkedListQueue} in figura \ref{fig: DiagrammaDelleClassi}) è stata realizzata implementando tutti i metodi che non erano stati scritti nella classe astratta \textit{Queue} e ogni nodo è rappresentato dalla classe \textit{LinkedListNode}, sempre in figura \ref{fig: DiagrammaDelleClassi}.
 
 Questa struttura dati ha diversi vantaggi e svantaggi, che si qualificano in base all'efficienza che hanno nelle varie operazioni standard:
 
@@ -296,7 +295,7 @@ Una lista concatenata ordinata (nel codice è la classe \textit{SortedLinkedList
 Analizziamo dunque le differenze implementative delle operazioni di inserimento e cancellazione:
 
 \begin{itemize}
-    \item \verb|Inserimento di un valore|: non sarà sufficiente inserire il nuovo nodo a inizio lista, bensì sarà necessario scorrere la lista finchè non si trova la posizione corretta in cui andrà inserito. Il caso peggiore è quando l'elemento da inserire è più piccolo di tutti gli altri nodi della lista e duqnue si dovrà posizionare in fondo ad essa (vedi figura \ref{fig: Linked4}). Il costo dunque è di $O(n)$.
+    \item \verb|Inserimento di un valore|: non sarà sufficiente inserire il nuovo nodo a inizio lista, bensì sarà necessario scorrere la lista finchè non si trova la posizione corretta in cui andrà inserito (vedi figura \ref{fig: Linked4}). Il caso peggiore è quando l'elemento da inserire è più piccolo di tutti gli altri nodi della lista e duqnue si dovrà posizionare in fondo ad essa. Il costo dunque è di $O(n)$.
 
     \begin{figure}[H]
     \includegraphics[width=0.6\textwidth]{Images/Linked4.png}
@@ -308,7 +307,7 @@ Analizziamo dunque le differenze implementative delle operazioni di inserimento 
     \footnote{Fonte dell'immagine: \textit{https://www.techiedelight.com/sorted-insert-in-linked-list/}}
 
 
-    \item \verb|Rimozione del valore massimo|: in questo caso, l'operazione è molto agevolata dal fatto che la lista è ordinata in senseo decrescente. Per questo motivo, basterà modificare la testa della lista per rimuovere l'elemento massimo. Quest'operazione avrà dunque una complessità pari a $\Theta$(1). Vedi figura \ref{fig: Linked5}
+    \item \verb|Rimozione del valore massimo|: in questo caso, l'operazione è molto agevolata dal fatto che la lista è ordinata in senso decrescente. Per questo motivo, basterà modificare la testa della lista per rimuovere l'elemento massimo. Quest'operazione avrà dunque una complessità pari a $\Theta$(1). Vedi figura \ref{fig: Linked5}
 
     \begin{figure}[H]
     \includegraphics[width=0.4\textwidth]{Images/Linked5.png}
@@ -325,13 +324,13 @@ Analizziamo dunque le differenze implementative delle operazioni di inserimento 
 
 \subsection{Prestazioni teoriche volute}
 
-Come accennato in precedenza, questa relazione confronta le prestazioni di tre operazioni su una coda di priorità, che sono state implementate utilizzando tre diverse strutture dati. Le operazioni prese in considerazione sono l'inserimento di nuovi valori, la ricerca del valore massimo e l'estrazione di tale valore.
+Come accennato in precedenza, questa relazione confronta le prestazioni di tre operazioni su una coda di priorità, che sono state implementate utilizzando tre diverse strutture dati. Le operazioni prese in considerazione sono l'inserimento di nuovi valori, la ricerca del valore massimo e l'estrazione di tale valore. I risultati ottenuti dagli esperimenti pratici, al fine di vedere se le prestazioni teoriche saranno confermate, verranno discussi in sezione \ref{sec:osservazioniFinali}.
 
 \subsubsection{Inserimento dei valori}
 
     \begin{enumerate}
     
-    \item Per inserire un valore in un max heap, viene aggiunto un nuovo nodo nell'ultimo livello con un valore di $-\infty$, questo avviene in tempo costante. Successivamente, tramite l'utilizzo di \textit{increaseKey(i, key)}, viene impostato il valore del nodo, garantendo il mantenimento delle proprietà del max heap. La complessità dell'inserimento è quindi di $O(\log_2(n))$.
+    \item Per inserire un valore in un max heap, viene aggiunto un nuovo nodo nell'ultimo livello (con incremento della size) con un valore di $-\infty$, questo avviene in tempo costante. Successivamente, tramite l'utilizzo di \textit{increaseKey(i, key)}, viene impostato il valore del nodo, garantendo il mantenimento delle proprietà del max heap. La complessità dell'inserimento è quindi di $O(\log_2(n))$.
     
     \item In una lista concatenata non ordinata, l'inserimento avviene sempre in testa, rendendo la complessità dell'inserimento $\Theta(1)$.
     
@@ -359,7 +358,7 @@ Come accennato in precedenza, questa relazione confronta le prestazioni di tre o
     
     \item In una lista concatenata non ordinata, una volta individuato il valore da rimuovere, questo viene scollegato dalla lista come mostrato nella figura \ref{fig: Linked3}. Il caso peggiore ha complessità di questa operazione è $\Theta(n)$ (come la ricerca del massimo).
     
-    \item In una lista concatenata ordinata il costo della rimozione è costante ($\Theta(1)$) (uguale alla ricerca) in quanto è sufficiente aggiornare il primo elemento (ovvero \textit{head}) della lista.
+    \item In una lista concatenata ordinata il costo della rimozione è costante ($\Theta(1)$) (uguale alla ricerca) in quanto è sufficiente modificare il primo elemento (ovvero \textit{head}) della lista.
     
     \end{enumerate}
 
@@ -459,6 +458,8 @@ I grafici illustrano la variazione del tempo di esecuzione delle tre funzioni im
 
 \section{Analisi e osservazioni sui risultati finali}
 
+\label{sec:osservazioniFinali}
+
 In questa sezione finale viene presentata un'analisi dettagliata delle prestazioni delle tre operazioni per le tre diverse implementazioni della coda con priorità, utilizzando le tabelle e i grafici prodotti precedentemente come supporto visivo. Il presente capitolo si propone di analizzare in modo più approfondito i risultati ottenuti e di trarre osservazioni significative da essi. L'obiettivo finale di questa sezione è quello di offrire una sintesi completa delle osservazioni tratte dai risultati finali dell'analisi, mettendo in luce le caratteristiche e le differenze significative tra le tre implementazioni della coda con priorità (vedere tabella riassuntiva \ref{tab:Prestazioni}).
 
 \subsection{Inserimento dei valori}
@@ -472,7 +473,7 @@ La tabella rappresentata nella figura \ref{fig:TabellaInserimento} riporta i tem
 
 \item L'inserimento in una lista concatenata non ordinata ha un costo costante ($\Theta(1)$), il che significa che i tempi di esecuzione sono notevolmente inferiori rispetto alle altre due implementazioni. Questo perché l'inserimento viene effettuato in testa alla coda, senza richiedere operazioni di ricerca o riorganizzazione dei dati.
 
-\item L'inserimento in una lista concatenata ordinata è un'operazione molto costosa. Dall'andamento rappresentato nel grafico (linea gialla), è evidente che i tempi di esecuzione aumentano linearmente all'aumentare del numero di valori nella lista. Ciò è dovuto al fatto che i valori sono ordinati, e nel caso peggiore (valore da inserire maggiore di tutti gli altri), è necessario scorrere l'intera lista per trovare la posizione corretta di inserimento. Il costo di questa operazione cresce in modo più significativo rispetto all'implementazione basata sul max heap (complessità $O(n)$, $O$ e non $\Theta$ in quanto non è detto che scorra tutta la lista).
+\item L'inserimento in una lista concatenata ordinata è un'operazione molto costosa. Dall'andamento rappresentato nel grafico (linea gialla), è evidente che i tempi di esecuzione aumentano linearmente all'aumentare del numero di valori nella lista. Ciò è dovuto al fatto che i valori sono ordinati, e nel caso peggiore (valore da inserire minore di tutti gli altri), è necessario scorrere l'intera lista per trovare la posizione corretta di inserimento. Il costo di questa operazione cresce in modo più significativo rispetto all'implementazione basata sul max heap (complessità $O(n)$, $O$ e non $\Theta$ in quanto non è detto che scorra tutta la lista).
 
 \end{itemize}
 
@@ -485,7 +486,7 @@ La tabella rappresentata nella figura \ref{fig:TabellaInserimento} riporta i tem
 
 \item La ricerca del valore massimo in una lista concatenata non ordinata è un'operazione molto costosa. Questo è dovuto al fatto che, essendo la lista non ordinata, è necessario scorrere tutti gli elementi al suo interno (complessità $\Theta(n)$). Come previsto dalla teoria, il tempo di esecuzione dell'algoritmo aumenta linearmente con la dimensione (n) della lista.
 
-\item Per la lista concatenata ordinata vale lo stesso principio del max heap. Grazie alla sua struttura, è sufficiente accedere a uno dei due estremi della coda (direttamente tramite l'head o la tail, a seconda dell'ordine della lista) per trovare il valore massimo (complessità $\Theta(1)$).
+\item Per la lista concatenata ordinata vale lo stesso principio del max heap. Grazie alla sua struttura, è sufficiente accedere a uno dei due estremi della coda (direttamente tramite l'head o la tail, a seconda dell'ordine della lista, in questo caso 'head' in quanto la lista è ordinata in senso decrescente) per trovare il valore massimo (complessità $\Theta(1)$).
 
 \end{itemize}
 
